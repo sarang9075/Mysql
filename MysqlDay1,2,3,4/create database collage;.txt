@@ -1,0 +1,308 @@
+ create database collage;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| collage            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> use collage;
+Database changed
+mysql> create table student( id int primary key,name varchar(50),city varchar(50),course varchar(50),mark int);
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> insert into student value (1,'sarang','nanded','bca',75);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from student table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table' at line 1
+mysql> select from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from student' at line 1
+mysql> select * from student;
++----+--------+--------+--------+------+
+| id | name   | city   | course | mark |
++----+--------+--------+--------+------+
+|  1 | sarang | nanded | bca    |   75 |
++----+--------+--------+--------+------+
+1 row in set (0.00 sec)
+
+mysql> insert into student value (2,'rahul','pune','bcs',79),(3,'sohan','nanded','bca',68);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student value (4,'chandu','sambhajinagar','bba',70),(5,'sneha','nanded','bca',74);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into student value (6,'ganesh','pune','bcs',78),(7,'sudesrshan','latur','bca',69),(8,'nandu','nagar','bcs',66);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> insert into student value (9,'rajesh','jalna','bcs',78),(10,'samir','mumbai','bca',69);
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+------------+---------------+--------+------+
+| id | name       | city          | course | mark |
++----+------------+---------------+--------+------+
+|  1 | sarang     | nanded        | bca    |   75 |
+|  2 | rahul      | pune          | bcs    |   79 |
+|  3 | sohan      | nanded        | bca    |   68 |
+|  4 | chandu     | sambhajinagar | bba    |   70 |
+|  5 | sneha      | nanded        | bca    |   74 |
+|  6 | ganesh     | pune          | bcs    |   78 |
+|  7 | sudesrshan | latur         | bca    |   69 |
+|  8 | nandu      | nagar         | bcs    |   66 |
+|  9 | rajesh     | jalna         | bcs    |   78 |
+| 10 | samir      | mumbai        | bca    |   69 |
++----+------------+---------------+--------+------+
+10 rows in set (0.00 sec)
+
+mysql> select name,mark from student;
++------------+------+
+| name       | mark |
++------------+------+
+| sarang     |   75 |
+| rahul      |   79 |
+| sohan      |   68 |
+| chandu     |   70 |
+| sneha      |   74 |
+| ganesh     |   78 |
+| sudesrshan |   69 |
+| nandu      |   66 |
+| rajesh     |   78 |
+| samir      |   69 |
++------------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student where mark > 74;
++----+--------+--------+--------+------+
+| id | name   | city   | course | mark |
++----+--------+--------+--------+------+
+|  1 | sarang | nanded | bca    |   75 |
+|  2 | rahul  | pune   | bcs    |   79 |
+|  6 | ganesh | pune   | bcs    |   78 |
+|  9 | rajesh | jalna  | bcs    |   78 |
++----+--------+--------+--------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from student where city= 'nanded';
++----+--------+--------+--------+------+
+| id | name   | city   | course | mark |
++----+--------+--------+--------+------+
+|  1 | sarang | nanded | bca    |   75 |
+|  3 | sohan  | nanded | bca    |   68 |
+|  5 | sneha  | nanded | bca    |   74 |
++----+--------+--------+--------+------+
+3 rows in set (0.00 sec)
+
+mysql> select * from studnet order by marks desc;
+ERROR 1146 (42S02): Table 'collage.studnet' doesn't exist
+mysql> select * from student order by marks desc;
+ERROR 1054 (42S22): Unknown column 'marks' in 'order clause'
+mysql> select * from student order by mark desc;
++----+------------+---------------+--------+------+
+| id | name       | city          | course | mark |
++----+------------+---------------+--------+------+
+|  2 | rahul      | pune          | bcs    |   79 |
+|  6 | ganesh     | pune          | bcs    |   78 |
+|  9 | rajesh     | jalna         | bcs    |   78 |
+|  1 | sarang     | nanded        | bca    |   75 |
+|  5 | sneha      | nanded        | bca    |   74 |
+|  4 | chandu     | sambhajinagar | bba    |   70 |
+|  7 | sudesrshan | latur         | bca    |   69 |
+| 10 | samir      | mumbai        | bca    |   69 |
+|  3 | sohan      | nanded        | bca    |   68 |
+|  8 | nandu      | nagar         | bcs    |   66 |
++----+------------+---------------+--------+------+
+10 rows in set (0.00 sec)
+
+mysql> select * from student order by city desc ;
++----+------------+---------------+--------+------+
+| id | name       | city          | course | mark |
++----+------------+---------------+--------+------+
+|  4 | chandu     | sambhajinagar | bba    |   70 |
+|  2 | rahul      | pune          | bcs    |   79 |
+|  6 | ganesh     | pune          | bcs    |   78 |
+|  1 | sarang     | nanded        | bca    |   75 |
+|  3 | sohan      | nanded        | bca    |   68 |
+|  5 | sneha      | nanded        | bca    |   74 |
+|  8 | nandu      | nagar         | bcs    |   66 |
+| 10 | samir      | mumbai        | bca    |   69 |
+|  7 | sudesrshan | latur         | bca    |   69 |
+|  9 | rajesh     | jalna         | bcs    |   78 |
++----+------------+---------------+--------+------+
+10 rows in set (0.06 sec)
+
+mysql> select * from studnet order by course desc;
+ERROR 1146 (42S02): Table 'collage.studnet' doesn't exist
+mysql> select * from student order by course desc;
++----+------------+---------------+--------+------+
+| id | name       | city          | course | mark |
++----+------------+---------------+--------+------+
+|  2 | rahul      | pune          | bcs    |   79 |
+|  6 | ganesh     | pune          | bcs    |   78 |
+|  8 | nandu      | nagar         | bcs    |   66 |
+|  9 | rajesh     | jalna         | bcs    |   78 |
+|  1 | sarang     | nanded        | bca    |   75 |
+|  3 | sohan      | nanded        | bca    |   68 |
+|  5 | sneha      | nanded        | bca    |   74 |
+|  7 | sudesrshan | latur         | bca    |   69 |
+| 10 | samir      | mumbai        | bca    |   69 |
+|  4 | chandu     | sambhajinagar | bba    |   70 |
++----+------------+---------------+--------+------+
+10 rows in set (0.00 sec)
+
+mysql> select distinct city from student;
++---------------+
+| city          |
++---------------+
+| nanded        |
+| pune          |
+| sambhajinagar |
+| latur         |
+| nagar         |
+| jalna         |
+| mumbai        |
++---------------+
+7 rows in set (0.01 sec)
+
+mysql> select distinct course form student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'student' at line 1
+mysql> select distinct course from student;
++--------+
+| course |
++--------+
+| bca    |
+| bcs    |
+| bba    |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where mark between 70 and 80 ;
++----+--------+---------------+--------+------+
+| id | name   | city          | course | mark |
++----+--------+---------------+--------+------+
+|  1 | sarang | nanded        | bca    |   75 |
+|  2 | rahul  | pune          | bcs    |   79 |
+|  4 | chandu | sambhajinagar | bba    |   70 |
+|  5 | sneha  | nanded        | bca    |   74 |
+|  6 | ganesh | pune          | bcs    |   78 |
+|  9 | rajesh | jalna         | bcs    |   78 |
++----+--------+---------------+--------+------+
+6 rows in set (0.00 sec)
+
+mysql> select * from student where city in ('nanded','pune');
++----+--------+--------+--------+------+
+| id | name   | city   | course | mark |
++----+--------+--------+--------+------+
+|  1 | sarang | nanded | bca    |   75 |
+|  2 | rahul  | pune   | bcs    |   79 |
+|  3 | sohan  | nanded | bca    |   68 |
+|  5 | sneha  | nanded | bca    |   74 |
+|  6 | ganesh | pune   | bcs    |   78 |
++----+--------+--------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student where name like 's%";
+    '> \c
+    '> ^C
+mysql> select * from student where name like 's%';
++----+------------+--------+--------+------+
+| id | name       | city   | course | mark |
++----+------------+--------+--------+------+
+|  1 | sarang     | nanded | bca    |   75 |
+|  3 | sohan      | nanded | bca    |   68 |
+|  5 | sneha      | nanded | bca    |   74 |
+|  7 | sudesrshan | latur  | bca    |   69 |
+| 10 | samir      | mumbai | bca    |   69 |
++----+------------+--------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> select count (*) from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '*) from student' at line 1
+mysql> select count(*) from student;
++----------+
+| count(*) |
++----------+
+|       10 |
++----------+
+1 row in set (0.01 sec)
+
+mysql> select count(*) from city;
+ERROR 1146 (42S02): Table 'collage.city' doesn't exist
+mysql> select count(*) from student(city);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '(city)' at line 1
+mysql> select sum(mark) from student;
++-----------+
+| sum(mark) |
++-----------+
+|       726 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select avg(mark) from student;
++-----------+
+| avg(mark) |
++-----------+
+|   72.6000 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select max(mark) from student;
++-----------+
+| max(mark) |
++-----------+
+|        79 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> select min(mark) from student;
++-----------+
+| min(mark) |
++-----------+
+|        66 |
++-----------+
+1 row in set (0.00 sec)
+
+mysql> update student set mark=85 where id=2;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> delete from student where id=6;
+Query OK, 1 row affected (0.07 sec)
+
+mysql> alter table mobno varchar(15);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(15)' at line 1
+mysql> alter table student add mobno varchar(15);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++----+------------+---------------+--------+------+-------+
+| id | name       | city          | course | mark | mobno |
++----+------------+---------------+--------+------+-------+
+|  1 | sarang     | nanded        | bca    |   75 | NULL  |
+|  2 | rahul      | pune          | bcs    |   85 | NULL  |
+|  3 | sohan      | nanded        | bca    |   68 | NULL  |
+|  4 | chandu     | sambhajinagar | bba    |   70 | NULL  |
+|  5 | sneha      | nanded        | bca    |   74 | NULL  |
+|  7 | sudesrshan | latur         | bca    |   69 | NULL  |
+|  8 | nandu      | nagar         | bcs    |   66 | NULL  |
+|  9 | rajesh     | jalna         | bcs    |   78 | NULL  |
+| 10 | samir      | mumbai        | bca    |   69 | NULL  |
++----+------------+---------------+--------+------+-------+
+9 rows in set (0.00 sec)
+
+mysql> show detabeses;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'detabeses' at line 1
+mysql>
+

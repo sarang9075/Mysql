@@ -1,0 +1,108 @@
+mysql> create database company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use company;
+Database changed
+mysql> create table employee;
+ERROR 4028 (HY000): A table must have at least one visible column.
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| company            |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> create table employe(empId int primary key,empName varchar(50),empDepartment varchar(50),sallary int);
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> create table employe(city varchar(50));
+ERROR 1050 (42S01): Table 'employe' already exists
+mysql> insert into employe value(1,'sarang','it',30000),(2,'rahul','hr',70000),(3,'samir','it',40000),(4,'raizwan','it',35000);
+Query OK, 4 rows affected (0.06 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> insert into employe value (5,'vishal','hr',75000),(6,'rohan','it',50000),(7,'laxman','it',60000),(8,'yash','it',45000),(9,'akshay','it',35000),(10,'ajay','it',40000);
+Query OK, 6 rows affected (0.07 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> select * from employe;
++-------+---------+---------------+---------+
+| empId | empName | empDepartment | sallary |
++-------+---------+---------------+---------+
+|     1 | sarang  | it            |   30000 |
+|     2 | rahul   | hr            |   70000 |
+|     3 | samir   | it            |   40000 |
+|     4 | raizwan | it            |   35000 |
+|     5 | vishal  | hr            |   75000 |
+|     6 | rohan   | it            |   50000 |
+|     7 | laxman  | it            |   60000 |
+|     8 | yash    | it            |   45000 |
+|     9 | akshay  | it            |   35000 |
+|    10 | ajay    | it            |   40000 |
++-------+---------+---------------+---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from empName;
+ERROR 1146 (42S02): Table 'company.empname' doesn't exist
+mysql> select empName from employe;
++---------+
+| empName |
++---------+
+| sarang  |
+| rahul   |
+| samir   |
+| raizwan |
+| vishal  |
+| rohan   |
+| laxman  |
+| yash    |
+| akshay  |
+| ajay    |
++---------+
+10 rows in set (0.00 sec)
+
+mysql> select * from employe where salary > 40000;
+ERROR 1054 (42S22): Unknown column 'salary' in 'where clause'
+mysql> select * from employe where sallary > 40000;
++-------+---------+---------------+---------+
+| empId | empName | empDepartment | sallary |
++-------+---------+---------------+---------+
+|     2 | rahul   | hr            |   70000 |
+|     5 | vishal  | hr            |   75000 |
+|     6 | rohan   | it            |   50000 |
+|     7 | laxman  | it            |   60000 |
+|     8 | yash    | it            |   45000 |
++-------+---------+---------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select * from employe where empId=7;
++-------+---------+---------------+---------+
+| empId | empName | empDepartment | sallary |
++-------+---------+---------------+---------+
+|     7 | laxman  | it            |   60000 |
++-------+---------+---------------+---------+
+1 row in set (0.06 sec)
+
+mysql> select * from employe order by sallary desc;
++-------+---------+---------------+---------+
+| empId | empName | empDepartment | sallary |
++-------+---------+---------------+---------+
+|     5 | vishal  | hr            |   75000 |
+|     2 | rahul   | hr            |   70000 |
+|     7 | laxman  | it            |   60000 |
+|     6 | rohan   | it            |   50000 |
+|     8 | yash    | it            |   45000 |
+|     3 | samir   | it            |   40000 |
+|    10 | ajay    | it            |   40000 |
+|     4 | raizwan | it            |   35000 |
+|     9 | akshay  | it            |   35000 |
+|     1 | sarang  | it            |   30000 |
++-------+---------+---------------+---------+
+10 rows in set (0.00 sec)
+
+mysql>
